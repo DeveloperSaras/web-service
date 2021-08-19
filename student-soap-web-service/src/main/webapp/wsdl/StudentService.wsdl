@@ -1,0 +1,205 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<wsdl:definitions targetNamespace="http://sks.com" xmlns:apachesoap="http://xml.apache.org/xml-soap" xmlns:impl="http://sks.com" xmlns:intf="http://sks.com" xmlns:wsdl="http://schemas.xmlsoap.org/wsdl/" xmlns:wsdlsoap="http://schemas.xmlsoap.org/wsdl/soap/" xmlns:xsd="http://www.w3.org/2001/XMLSchema">
+<!--WSDL created by Apache Axis version: 1.4
+Built on Apr 22, 2006 (06:55:48 PDT)-->
+ <wsdl:types>
+  <schema elementFormDefault="qualified" targetNamespace="http://sks.com" xmlns="http://www.w3.org/2001/XMLSchema">
+   <element name="addStudent">
+    <complexType/>
+   </element>
+   <element name="addStudentResponse">
+    <complexType>
+     <sequence>
+      <element name="addStudentReturn" type="xsd:boolean"/>
+     </sequence>
+    </complexType>
+   </element>
+   <element name="deleteStudent">
+    <complexType/>
+   </element>
+   <element name="deleteStudentResponse">
+    <complexType>
+     <sequence>
+      <element name="deleteStudentReturn" type="xsd:boolean"/>
+     </sequence>
+    </complexType>
+   </element>
+   <element name="getAllStudent">
+    <complexType/>
+   </element>
+   <element name="getAllStudentResponse">
+    <complexType>
+     <sequence>
+      <element maxOccurs="unbounded" name="getAllStudentReturn" type="impl:Student"/>
+     </sequence>
+    </complexType>
+   </element>
+   <complexType name="Student">
+    <sequence>
+     <element name="age" type="xsd:int"/>
+     <element name="id" type="xsd:int"/>
+     <element name="name" nillable="true" type="xsd:string"/>
+    </sequence>
+   </complexType>
+  </schema>
+ </wsdl:types>
+
+   <wsdl:message name="deleteStudentRequest">
+
+      <wsdl:part element="impl:deleteStudent" name="parameters">
+
+      </wsdl:part>
+
+   </wsdl:message>
+
+   <wsdl:message name="deleteStudentResponse">
+
+      <wsdl:part element="impl:deleteStudentResponse" name="parameters">
+
+      </wsdl:part>
+
+   </wsdl:message>
+
+   <wsdl:message name="getAllStudentRequest">
+
+      <wsdl:part element="impl:getAllStudent" name="parameters">
+
+      </wsdl:part>
+
+   </wsdl:message>
+
+   <wsdl:message name="addStudentRequest">
+
+      <wsdl:part element="impl:addStudent" name="parameters">
+
+      </wsdl:part>
+
+   </wsdl:message>
+
+   <wsdl:message name="addStudentResponse">
+
+      <wsdl:part element="impl:addStudentResponse" name="parameters">
+
+      </wsdl:part>
+
+   </wsdl:message>
+
+   <wsdl:message name="getAllStudentResponse">
+
+      <wsdl:part element="impl:getAllStudentResponse" name="parameters">
+
+      </wsdl:part>
+
+   </wsdl:message>
+
+   <wsdl:portType name="StudentService">
+
+      <wsdl:operation name="addStudent">
+
+         <wsdl:input message="impl:addStudentRequest" name="addStudentRequest">
+
+       </wsdl:input>
+
+         <wsdl:output message="impl:addStudentResponse" name="addStudentResponse">
+
+       </wsdl:output>
+
+      </wsdl:operation>
+
+      <wsdl:operation name="deleteStudent">
+
+         <wsdl:input message="impl:deleteStudentRequest" name="deleteStudentRequest">
+
+       </wsdl:input>
+
+         <wsdl:output message="impl:deleteStudentResponse" name="deleteStudentResponse">
+
+       </wsdl:output>
+
+      </wsdl:operation>
+
+      <wsdl:operation name="getAllStudent">
+
+         <wsdl:input message="impl:getAllStudentRequest" name="getAllStudentRequest">
+
+       </wsdl:input>
+
+         <wsdl:output message="impl:getAllStudentResponse" name="getAllStudentResponse">
+
+       </wsdl:output>
+
+      </wsdl:operation>
+
+   </wsdl:portType>
+
+   <wsdl:binding name="StudentServiceSoapBinding" type="impl:StudentService">
+
+      <wsdlsoap:binding style="document" transport="http://schemas.xmlsoap.org/soap/http"/>
+
+      <wsdl:operation name="addStudent">
+
+         <wsdlsoap:operation soapAction=""/>
+
+         <wsdl:input name="addStudentRequest">
+
+            <wsdlsoap:body use="literal"/>
+
+         </wsdl:input>
+
+         <wsdl:output name="addStudentResponse">
+
+            <wsdlsoap:body use="literal"/>
+
+         </wsdl:output>
+
+      </wsdl:operation>
+
+      <wsdl:operation name="deleteStudent">
+
+         <wsdlsoap:operation soapAction=""/>
+
+         <wsdl:input name="deleteStudentRequest">
+
+            <wsdlsoap:body use="literal"/>
+
+         </wsdl:input>
+
+         <wsdl:output name="deleteStudentResponse">
+
+            <wsdlsoap:body use="literal"/>
+
+         </wsdl:output>
+
+      </wsdl:operation>
+
+      <wsdl:operation name="getAllStudent">
+
+         <wsdlsoap:operation soapAction=""/>
+
+         <wsdl:input name="getAllStudentRequest">
+
+            <wsdlsoap:body use="literal"/>
+
+         </wsdl:input>
+
+         <wsdl:output name="getAllStudentResponse">
+
+            <wsdlsoap:body use="literal"/>
+
+         </wsdl:output>
+
+      </wsdl:operation>
+
+   </wsdl:binding>
+
+   <wsdl:service name="StudentServiceService">
+
+      <wsdl:port binding="impl:StudentServiceSoapBinding" name="StudentService">
+
+         <wsdlsoap:address location="http://localhost:8080/student-soap-web-service/services/StudentService"/>
+
+      </wsdl:port>
+
+   </wsdl:service>
+
+</wsdl:definitions>

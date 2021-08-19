@@ -1,0 +1,40 @@
+<!-- Use this file to deploy some handlers/chains and services      -->
+<!-- Two ways to do this:                                           -->
+<!--   java org.apache.axis.client.AdminClient deploy.wsdd          -->
+<!--      after the axis server is running                          -->
+<!-- or                                                             -->
+<!--   java org.apache.axis.utils.Admin client|server deploy.wsdd   -->
+<!--      from the same directory that the Axis engine runs         -->
+
+<deployment
+    xmlns="http://xml.apache.org/axis/wsdd/"
+    xmlns:java="http://xml.apache.org/axis/wsdd/providers/java">
+
+  <!-- Services from StudentServiceService WSDL service -->
+
+  <service name="StudentService" provider="java:RPC" style="wrapped" use="literal">
+      <parameter name="wsdlTargetNamespace" value="http://sks.com"/>
+      <parameter name="wsdlServiceElement" value="StudentServiceService"/>
+      <parameter name="schemaQualified" value="http://sks.com"/>
+      <parameter name="wsdlServicePort" value="StudentService"/>
+      <parameter name="className" value="com.sks.StudentServiceSoapBindingImpl"/>
+      <parameter name="wsdlPortType" value="StudentService"/>
+      <parameter name="typeMappingVersion" value="1.2"/>
+      <operation name="addStudent" qname="operNS:addStudent" xmlns:operNS="http://sks.com" returnQName="retNS:addStudentReturn" xmlns:retNS="http://sks.com" returnType="rtns:boolean" xmlns:rtns="http://www.w3.org/2001/XMLSchema" soapAction="" >
+      </operation>
+      <operation name="deleteStudent" qname="operNS:deleteStudent" xmlns:operNS="http://sks.com" returnQName="retNS:deleteStudentReturn" xmlns:retNS="http://sks.com" returnType="rtns:boolean" xmlns:rtns="http://www.w3.org/2001/XMLSchema" soapAction="" >
+      </operation>
+      <operation name="getAllStudent" qname="operNS:getAllStudent" xmlns:operNS="http://sks.com" returnQName="retNS:getAllStudentReturn" xmlns:retNS="http://sks.com" returnType="rtns:Student" xmlns:rtns="http://sks.com" soapAction="" >
+      </operation>
+      <parameter name="allowedMethods" value="addStudent deleteStudent getAllStudent"/>
+
+      <typeMapping
+        xmlns:ns="http://sks.com"
+        qname="ns:Student"
+        type="java:com.sks.Student"
+        serializer="org.apache.axis.encoding.ser.BeanSerializerFactory"
+        deserializer="org.apache.axis.encoding.ser.BeanDeserializerFactory"
+        encodingStyle=""
+      />
+  </service>
+</deployment>
